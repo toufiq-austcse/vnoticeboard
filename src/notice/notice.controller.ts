@@ -26,29 +26,37 @@ export class NoticeController {
   }
 
   @Get(':noticeId')
-  findById(@Param('noticeId') noticeId: number) {
-    return this.noticeService.findById(noticeId);
+  @UseGuards(JwtAuthenticationGuard)
+  findById(@Param('noticeId') noticeId: number, @Req() req: any) {
+    return this.noticeService.findById(noticeId, req.user);
   }
 
   @Delete(':noticeId')
-  deleteById(@Param('noticeId') noticeId: number) {
-    return this.noticeService.deleteById(noticeId);
+  @UseGuards(JwtAuthenticationGuard)
+  deleteById(@Param('noticeId') noticeId: number, @Req() req: any) {
+    return this.noticeService.deleteById(noticeId, req.user);
   }
 
   @Patch(':noticeId')
+  @UseGuards(JwtAuthenticationGuard)
   updateById(
     @Param('noticeId') noticeId: number,
     @Body() updateNoticeDto: UpdateNoticeDto,
+    @Req() req: any,
   ) {
-    return this.noticeService.updateById(noticeId, updateNoticeDto);
+    return this.noticeService.updateById(noticeId, updateNoticeDto, req.user);
   }
 
   @Get()
-  getNotices(@Query('page') page:number) {
-      let limit = 10;
-      return this.noticeService.paginate({
-          limit,
-          page,
-      })
+  @UseGuards(JwtAuthenticationGuard)
+  getNotices(@Query('page') page: number, @Req() req: any) {
+    let limit = 10;
+    return this.noticeService.paginate(
+      {
+        limit,
+        page,
+      },
+      req.user,
+    );
   }
 }

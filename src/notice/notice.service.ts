@@ -27,29 +27,31 @@ export class NoticeService {
     return newNotice;
   }
 
-  async findById(id: number) {
-    let notice = await this.noticeRepository.findOne(id);
+  async findById(id: number,institute:Institute) {
+    let notice = await this.noticeRepository.findOne({id,institute});
     if (!notice) {
       throw new NotFoundException(`${id} not found`);
     }
     return notice;
   }
 
-  async deleteById(noticeId: number) {
-    let res = await this.noticeRepository.delete({ id: noticeId });
+  async deleteById(noticeId: number,institute:Institute) {
+    let res = await this.noticeRepository.delete({ id: noticeId ,institute});
     return {
       is_deleted: res.affected === 1,
     };
   }
 
-  async updateById(id: number, updateNoticeDto: UpdateNoticeDto) {
-    let res = await this.noticeRepository.update(id, updateNoticeDto);
+  async updateById(id: number, updateNoticeDto: UpdateNoticeDto,institute:Institute) {
+    let res = await this.noticeRepository.update({id,institute}, updateNoticeDto);
     return {
       is_updated: res.affected === 1,
     };
   }
 
-  async paginate(options: IPaginationOptions): Promise<Pagination<Notice>> {
-    return paginate(this.noticeRepository, options);
+  async paginate(options: IPaginationOptions,institute:Institute): Promise<Pagination<Notice>> {
+    const queryBuilder = this.noticeRepository.createQueryBuilder('c');
+    queryBuilder.where('c.institute',institute);
+    return paginate<Notice>(queryBuilder,options);
   }
 }
