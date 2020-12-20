@@ -24,13 +24,13 @@ export class AuthenticationController {
   @Post('login')
   @HttpCode(200)
   @UseGuards(LocalAuthenticationGuard)
-  async login(@Req() request: any) {
+  login(@Req() request: any) {
     return this.authenticationService.login(request.user);
   }
 
   @Get('me')
   @UseGuards(JwtAuthenticationGuard)
-  async getMe(@Req() request: any) {
+  getMe(@Req() request: any) {
     return request.user;
   }
 }

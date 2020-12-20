@@ -1,8 +1,10 @@
+import Notice from 'src/notice/notice.entity';
 import {
   Entity,
   CreateDateColumn,
   PrimaryGeneratedColumn,
   Column,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -27,5 +29,8 @@ class Institute {
 
   @CreateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
+
+  @OneToMany(()=>Notice,(notice:Notice)=>notice.institute)
+  public notices: Notice[];
 }
 export default Institute;
