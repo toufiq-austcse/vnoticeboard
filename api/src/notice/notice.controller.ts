@@ -10,7 +10,8 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthenticationGuard } from 'src/shared/guard/jwt-authentication.guard';
+import { JwtAuthenticationGuard } from '../shared/guard/jwt-authentication.guard';
+
 import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
 import { NoticeService } from './notice.service';

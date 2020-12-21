@@ -1,9 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
-import { InstituteService } from 'src/institute/institute.service';
+
 import * as bcrypt from 'bcrypt';
-import Institute from 'src/institute/institute.entity';
+
 import { JwtService } from '@nestjs/jwt';
+import { InstituteService } from '../institute/institute.service';
+import Institute from '../institute/institute.entity';
 
 @Injectable()
 export class AuthenticationService {

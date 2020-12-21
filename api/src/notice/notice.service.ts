@@ -5,8 +5,9 @@ import {
   paginate,
   Pagination,
 } from 'nestjs-typeorm-paginate';
-import Institute from 'src/institute/institute.entity';
+
 import { Repository } from 'typeorm';
+import Institute from '../institute/institute.entity';
 import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
 import Notice from './notice.entity';

@@ -2,8 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import Institute from './institute.entity';
 import { Repository } from 'typeorm';
-import { RegisterDto } from 'src/authentication/dto/register.dto';
+
 import * as uniqueId from 'uniqid';
+import { RegisterDto } from '../authentication/dto/register.dto';
 @Injectable()
 export class InstituteService {
   constructor(

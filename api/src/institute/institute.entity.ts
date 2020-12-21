@@ -1,4 +1,4 @@
-import Notice from 'src/notice/notice.entity';
+
 import {
   Entity,
   CreateDateColumn,
@@ -6,6 +6,7 @@ import {
   Column,
   OneToMany,
 } from 'typeorm';
+import Notice from '../notice/notice.entity';
 
 @Entity()
 class Institute {

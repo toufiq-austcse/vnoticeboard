@@ -1,4 +1,4 @@
-import Institute from 'src/institute/institute.entity';
+
 import {
   Column,
   CreateDateColumn,
@@ -6,6 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import Institute from '../institute/institute.entity';
 
 @Entity()
 class Notice {

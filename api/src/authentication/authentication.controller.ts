@@ -7,10 +7,11 @@ import {
   Req,
   Get,
 } from '@nestjs/common';
-import { JwtAuthenticationGuard } from 'src/shared/guard/jwt-authentication.guard';
-import { LocalAuthenticationGuard } from 'src/shared/guard/local-authentication.guard';
+
 import { AuthenticationService } from './authentication.service';
 import { RegisterDto } from './dto/register.dto';
+import { LocalAuthenticationGuard } from '../shared/guard/local-authentication.guard';
+import { JwtAuthenticationGuard } from '../shared/guard/jwt-authentication.guard';
 
 @Controller('authentication')
 export class AuthenticationController {
